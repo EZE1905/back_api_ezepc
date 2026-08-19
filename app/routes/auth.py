@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.database.conexion import conectar_base_datos, cerrar_base_datos
 from app.servicios.auth_service import registrar_usuario,login_usuario
+from app.utils.auth_utils import generate_token
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -17,12 +18,16 @@ def register():
 
 @auth_bp.post('/login')
 def login():
+    # Usuario y contraseña Prueba
+    # {"nombre": "Juan Perez","email": "juan.perez@test.com","password": "Prueba1234","rol": "empleado"}
+
     data = request.get_json()
 
     existing_user = login_usuario(data)
 
     if existing_user:
-        return jsonify({"message": "Login exitoso"}), 200
+        token = generate_token(existing_user)
+        return jsonify({"token": token}), 201
     else:
         return jsonify({"message": "Credenciales incorrectas"}), 401
 

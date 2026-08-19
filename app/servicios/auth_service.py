@@ -39,7 +39,8 @@ def login_usuario(data):
         hashed_password = existing_user[3]
         if check_password_hash(hashed_password, password):
             cerrar_base_datos(connection, cursor)
-            return True
+            user = {'id': existing_user[0], 'rol': existing_user[4]}
+            return user
         else:
             cerrar_base_datos(connection, cursor)
             return False
