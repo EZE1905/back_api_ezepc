@@ -18,8 +18,6 @@ def register():
 
 @auth_bp.post('/login')
 def login():
-    # Usuario y contraseña Prueba
-    # {"nombre": "Juan Perez","email": "juan.perez@test.com","password": "Prueba1234","rol": "empleado"}
 
     data = request.get_json()
 
@@ -38,3 +36,9 @@ def ver_usuarios():
     usuarios = cursor.fetchall()
     cerrar_base_datos(connection, cursor)
     return jsonify(usuarios)
+
+# Usuario y contraseña Prueba
+
+# {"nombre": "Juan Perez","email": "juan.perez@test.com","password": "Prueba1234","rol": "empleado"}
+
+# {"nombre": "Roberto Diaz,"email": "roberto.diaz@test.com","password": "Pruebacliente","rol": "cliente"}
