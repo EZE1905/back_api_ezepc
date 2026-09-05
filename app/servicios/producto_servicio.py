@@ -7,7 +7,7 @@ def mostrar_todos_los_productos():
     cerrar_base_datos(connection, cursor)
     return productos
 
-def crear_producto_nuevo(request_data):
+def crear_producto_nuevo(request_data):    
     connection, cursor = conectar_base_datos()
     cursor.execute("INSERT INTO productos (nombre, descripcion, precio, stock, categoria) VALUES (%s, %s, %s, %s, %s)", (request_data['nombre'], request_data['descripcion'], request_data['precio'], request_data['stock'], request_data['categoria']))
     connection.commit()
