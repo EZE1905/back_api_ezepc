@@ -1,6 +1,7 @@
 from flask import Flask
 from app.routes.productos import productos_bp
 from app.routes.auth import auth_bp
+from app.routes.ventas import ventas_bp
 
 def create_app():
     
@@ -17,4 +18,8 @@ def create_app():
 
     # Registramos la autenticación
     app.register_blueprint(auth_bp)
+
+    # Registramos las ventas
+    app.register_blueprint(ventas_bp)
+
     return app
